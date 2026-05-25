@@ -24,6 +24,19 @@ import { gsap, useGSAP } from "./Gsapconfig";
 import * as THREE from "three";
 import { loadingState } from "./Loadingstate";
 
+const CORNER = "#F05A1F";
+function EnterCorners() {
+  const s = { position: "absolute", width: 8, height: 8, pointerEvents: "none" };
+  return (
+    <>
+      <span style={{ ...s, top: -10, left: -10, borderTop: `1.5px solid ${CORNER}`, borderLeft: `1.5px solid ${CORNER}` }} />
+      <span style={{ ...s, top: -10, right: -10, borderTop: `1.5px solid ${CORNER}`, borderRight: `1.5px solid ${CORNER}` }} />
+      <span style={{ ...s, bottom: -10, left: -10, borderBottom: `1.5px solid ${CORNER}`, borderLeft: `1.5px solid ${CORNER}` }} />
+      <span style={{ ...s, bottom: -10, right: -10, borderBottom: `1.5px solid ${CORNER}`, borderRight: `1.5px solid ${CORNER}` }} />
+    </>
+  );
+}
+
 /* ── Inline SVG components ── */
 const WhiteLine = () => (
   <svg
@@ -38,6 +51,9 @@ const WhiteLine = () => (
 );
 
 const IS_MOBILE_LOADER = typeof window !== "undefined" && window.innerWidth < 1024;
+
+export const bgAudio = typeof window !== "undefined" ? new Audio("/audio/music.mp3") : null;
+if (bgAudio) { bgAudio.loop = true; bgAudio.volume = 0.4; }
 
 const OrangeLine = () => (
   <svg
@@ -133,6 +149,8 @@ export default function LoadingScreen({ videoSrc = "/videos/loader.webm" }) {
 
   const [videoReady, setVideoReady] = useState(false);
   const [removed, setRemoved] = useState(false);
+  const [readyToEnter, setReadyToEnter] = useState(false);
+  const enterBtnRef = useRef(null);
 
   const progressSources = useRef({ three: 0, fonts: 0, video: 0 });
   const displayProgress = useRef({ value: 0 });
@@ -189,11 +207,11 @@ export default function LoadingScreen({ videoSrc = "/videos/loader.webm" }) {
       const waitForCounter = setInterval(() => {
         if (displayProgress.current.value >= 99) {
           clearInterval(waitForCounter);
-          runExitAnimation();
+          setReadyToEnter(true);
         }
       }, 50);
     }
-  }, [runExitAnimation]);
+  }, []);
 
   // ══════════════════════════════════════════
   // GSAP ANIMATIONS — useGSAP
@@ -225,6 +243,20 @@ export default function LoadingScreen({ videoSrc = "/videos/loader.webm" }) {
     },
     { scope: wrapperRef }
   );
+
+  // ── Animate enter button in when ready ──
+  useEffect(() => {
+    if (!readyToEnter || !enterBtnRef.current) return;
+    gsap.fromTo(enterBtnRef.current,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }
+    );
+  }, [readyToEnter]);
+
+  const handleEnter = useCallback(() => {
+    bgAudio?.play().catch(() => {});
+    runExitAnimation();
+  }, [runExitAnimation]);
 
   // ── Fade video in when buffered ──
   useGSAP(
@@ -386,7 +418,7 @@ export default function LoadingScreen({ videoSrc = "/videos/loader.webm" }) {
         const waitForCounter = setInterval(() => {
           if (displayProgress.current.value >= 99) {
             clearInterval(waitForCounter);
-            runExitAnimation();
+            setReadyToEnter(true);
           }
         }, 50);
       }
@@ -419,6 +451,37 @@ export default function LoadingScreen({ videoSrc = "/videos/loader.webm" }) {
         className="absolute inset-0"
         style={{ background: "#0a0a0a" }}
       />
+
+      {/* ── Enter button — shown when loading is complete ── */}
+      {readyToEnter && (
+        <div
+          ref={enterBtnRef}
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center"
+          style={{ opacity: 0 }}
+        >
+          <button
+            onClick={handleEnter}
+            className="relative cursor-pointer"
+            style={{ background: "none", border: "none", padding: 0 }}
+          >
+            <EnterCorners />
+            <div
+              className="flex items-center gap-4 border border-white/30 hover:bg-white/5 transition-colors duration-300"
+              style={{ padding: "clamp(0.6rem,1.5vw,1.1rem) clamp(1.8rem,4vw,3rem)" }}
+            >
+              <span
+                className="font-host text-white tracking-[0.25em] uppercase"
+                style={{ fontSize: "clamp(0.8rem,1.4vw,1.1rem)", fontWeight: 300 }}
+              >
+                Enter
+              </span>
+              <svg width="14" height="14" viewBox="0 0 10 10" fill="none">
+                <path d="M0.75 8.75L8.75 0.75M8.75 0.75H0.75M8.75 0.75V8.75" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          </button>
+        </div>
+      )}
 
       {/* ═══ Bottom bar — transparent, overlays video ═══ */}
       <div

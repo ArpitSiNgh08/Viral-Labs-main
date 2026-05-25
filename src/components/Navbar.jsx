@@ -31,6 +31,7 @@ import { gsap, SplitText, DrawSVGPlugin, useGSAP } from "./Gsapconfig";
 import { ViralLabsLogo, ViralLabsWordmark, ArrowIcon, NavGlowLine } from "./Svgassets";
 import { entranceState } from "./Entrancestate";
 import fontReady from "./fontReady";
+import { bgAudio } from "./Loadingscreen";
 
 /* ─── Config ─── */
 const NAV_ITEMS = [
@@ -122,7 +123,7 @@ function SoundWaveButton({ onClick, isPlaying, wavePathRef }) {
 
 export default function Navbar({ entranceDelay = 0.3 }) {
   const [activeNav, setActiveNav] = useState("Home");
-  const [isSoundPlaying, setIsSoundPlaying] = useState(false);
+  const [isSoundPlaying, setIsSoundPlaying] = useState(() => bgAudio ? !bgAudio.paused : false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const headerRef = useRef();
@@ -142,15 +143,19 @@ export default function Navbar({ entranceDelay = 0.3 }) {
     currentAmplitude: WAVE_MUTED_AMPLITUDE,
   });
 
-  /* Audio ref — create eagerly so iOS Safari authorises playback on first tap */
-  const audioRef = useRef(null);
-  if (audioRef.current == null) {
-    const a = new Audio("/audio/music.mp3");
-    a.loop = true;
-    a.volume = 0.5;
-    a.preload = "auto";
-    audioRef.current = a;
-  }
+  /* Sync button state with bgAudio play/pause events */
+  useEffect(() => {
+    if (!bgAudio) return;
+    const onPlay  = () => setIsSoundPlaying(true);
+    const onPause = () => setIsSoundPlaying(false);
+    bgAudio.addEventListener("play",  onPlay);
+    bgAudio.addEventListener("pause", onPause);
+    return () => {
+      bgAudio.removeEventListener("play",  onPlay);
+      bgAudio.removeEventListener("pause", onPause);
+    };
+  }, []);
+
 
   /* ─── Sine wave path generator ─── */
   const generateSineWavePath = () => {
@@ -314,12 +319,8 @@ export default function Navbar({ entranceDelay = 0.3 }) {
         cancelled = true;
         if (cleanupListeners) cleanupListeners();
 
-        // Audio cleanup
-        if (audioRef.current) {
-          audioRef.current.pause();
-          audioRef.current.src = "";
-          audioRef.current = null;
-        }
+        // Audio cleanup — just pause the shared instance, don't destroy it
+        bgAudio?.pause();
       };
     },
     { scope: headerRef }
@@ -332,9 +333,9 @@ export default function Navbar({ entranceDelay = 0.3 }) {
 
     // ── Audio control ──
     if (next) {
-      audioRef.current.play().catch(() => {});
+      bgAudio?.play().catch(() => {});
     } else {
-      audioRef.current.pause();
+      bgAudio?.pause();
     }
 
     // ── Wave amplitude ──
