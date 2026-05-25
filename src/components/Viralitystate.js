@@ -13,12 +13,13 @@ export const viralityState = {
   globeProgress: 0,
 
   // Position endpoints
-  startX: -1.3,
-  startZ: 1.0,
+  startX: -2.2,
+  startY: -2,
+  startZ: 0.5,
   endX: 0,
+  endY: 1.2,
   endZ: 0,
 
   // Scale endpoints
-  startScale: 1.5,
-  endScale: 1.0,
-};
+  startScale: 2.2,
+  endScale: 1.2};
