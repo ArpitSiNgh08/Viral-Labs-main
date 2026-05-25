@@ -90,18 +90,26 @@ const caseStudies = [
   {
     id: "01", brand: "The North Face", logo: "tnf",
     link: "https://giant-rubidium-888.notion.site/How-We-Drove-Sales-for-The-North-Face-Through-Organic-Content-3177dca4ef9f803f8357c8d54d4a2226?source=copy_link",
-    tagline: "Driving Sales Through\nOrganic Content.",
-    objective: "Drive qualified traffic and convert it into purchases using organic content.",
-    execution: "Built a 12 creator UGC engine producing high volume, discovery led content across TikTok, Instagram, and YouTube.",
-    stats: [{ value: "6M+", label: "Organic Views" }, { value: "93.8K+", label: "Website visits in 1 month" }, { value: "29.2%+", label: "Traffic spike post campaign launch" }],
+    tagline: "Engineering Discovery \nfor a Hidden Platform",
+    objective: "Turn The North Face's hidden recommerce platform into a discovery engine for fashion-conscious Gen Z, using organic content as the sole acquisition channel.",
+    execution: "Built a 12-creator content engine producing 477 videos under a 'secret discovery' framework - making The North Face Renewed feel like something Gen Z stumbled on, not something they were sold.",
+    stats: [{ value: "6M+", label: "Organic Views" }, { value: "93.8K+", label: "Website visits" }, { value: "$225K+", label: "Revenue" }],
   },
   {
     id: "02", brand: "FLO", logo: "flo",
     link: "https://giant-rubidium-888.notion.site/How-Viral-Labs-Engineered-Flo-s-Organic-Comeback-30b7dca4ef9f801aa0e8f90b6ef91284?source=copy_link",
     tagline: "Engineering an Organic\nComeback.",
-    objective: "Reverse negative brand perception and regain control of organic narrative.",
-    execution: "Deployed a high-volume creator system with 3,500+ videos designed to dominate algorithmic distribution.",
-    stats: [{ value: "123M+", label: "Organic Views" }, { value: "1M+", label: "22 Videos crossed" }, { value: "3,500+", label: "videos designed" }],
+    objective: "Build a high-volume organic engine that doubles as a paid creative testing lab - and turn its outliers into the brand's highest-ROAS paid ads.",
+    execution: "Built a 10-account UGC engine producing 600+ videos a month. Outlier organic videos became Flo's top-performing paid creative, cutting CAC 40% below the women's health app benchmark.",
+    stats: [{ value: "123M+", label: "Organic Views" }, { value: "200K+", label: "App Downloads" }, { value: "$2.74 ", label: "CAC" }],
+  },
+  {
+    id: "03", brand: "Deel", logo: "flo",
+    link: "https://giant-rubidium-888.notion.site/How-Viral-Labs-Engineered-Flo-s-Organic-Comeback-30b7dca4ef9f801aa0e8f90b6ef91284?source=copy_link",
+    tagline: "Engineering an Organic\nComeback.",
+    objective: "Build a high-volume organic engine that doubles as a paid creative testing lab - and turn its outliers into the brand's highest-ROAS paid ads.",
+    execution: "Built a 10-account UGC engine producing 600+ videos a month. Outlier organic videos became Flo's top-performing paid creative, cutting CAC 40% below the women's health app benchmark.",
+    stats: [{ value: "123M+", label: "Organic Views" }, { value: "200K+", label: "App Downloads" }, { value: "$2.74 ", label: "CAC" }],
   },
 ];
 
@@ -477,6 +485,11 @@ export default function MissionReports() {
   const item2ContentWrapRef = useRef(null);
   const item2ContentInnerRef = useRef(null);
 
+  const item3ContainerRef = useRef(null);
+  const item3HeaderRef = useRef(null);
+  const item3ContentWrapRef = useRef(null);
+  const item3ContentInnerRef = useRef(null);
+
   const tapHintRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(-1);
   // { reservedH, headerH, isDesktop } — null until measured
@@ -502,11 +515,12 @@ export default function MissionReports() {
         const paragraphH = paragraphAreaRef.current.offsetHeight || 0;
         const item1H = item1ContentInnerRef.current?.offsetHeight || 0;
         const item2H = item2ContentInnerRef.current?.offsetHeight || 0;
+        const item3H = item3ContentInnerRef.current?.offsetHeight || 0;
         const headerH = item1HeaderRef.current.offsetHeight || 0;
 
-        // contentH = natural height of the taller case study's expanded content.
+        // contentH = natural height of the tallest case study's expanded content.
         // This is exactly how far items translate up to make room below.
-        const contentH = Math.max(item1H, item2H);
+        const contentH = Math.max(item1H, item2H, item3H);
 
         const isDesktop = true; // translate-up enabled on all screen sizes
         setDims({ contentH, paragraphH, headerH, isDesktop });
@@ -537,8 +551,10 @@ export default function MissionReports() {
     // Rule: item i translates up by contentH if i <= activeIndex.
     const newItem1Y = activeIndex >= 0 ? -contentH : 0;
     const newItem2Y = activeIndex >= 1 ? -contentH : 0;
+    const newItem3Y = activeIndex >= 2 ? -contentH : 0;
     const prevItem1Y = prev >= 0 ? -contentH : 0;
     const prevItem2Y = prev >= 1 ? -contentH : 0;
+    const prevItem3Y = prev >= 2 ? -contentH : 0;
 
     // Sync with content timeline:
     //   OPEN  → forward timeline's height tween runs 0.15s to 0.80s of its timeline.
@@ -564,6 +580,7 @@ export default function MissionReports() {
 
     animate(item1ContainerRef.current, prevItem1Y, newItem1Y);
     animate(item2ContainerRef.current, prevItem2Y, newItem2Y);
+    animate(item3ContainerRef.current, prevItem3Y, newItem3Y);
 
     // Fade paragraph area + tap hint out when accordion opens, in when it closes.
     // Synced with the translate so they feel like one motion.
@@ -595,7 +612,7 @@ export default function MissionReports() {
   useEffect(() => {
     if (!dims) return;
     if (!dims.isDesktop) {
-      gsap.set([item1ContainerRef.current, item2ContainerRef.current], { y: 0, clearProps: "transform" });
+      gsap.set([item1ContainerRef.current, item2ContainerRef.current, item3ContainerRef.current], { y: 0, clearProps: "transform" });
     }
   }, [dims]);
 
@@ -674,7 +691,7 @@ export default function MissionReports() {
   const expandedHeight = null;
 
   const stageStyle = isDesktopLayout
-    ? { position: "relative", height: layoutH + GAP + 2 * dims.headerH }
+    ? { position: "relative", height: layoutH + GAP + 3 * dims.headerH }
     : undefined;
 
   const paragraphStyle = isDesktopLayout
@@ -683,6 +700,7 @@ export default function MissionReports() {
 
   const item1AbsolutePos = isDesktopLayout ? { top: layoutH + GAP } : null;
   const item2AbsolutePos = isDesktopLayout ? { top: layoutH + GAP + dims.headerH } : null;
+  const item3AbsolutePos = isDesktopLayout ? { top: layoutH + GAP + 2 * dims.headerH } : null;
 
   // Mobile tap hint sits just above the first accordion header
   const hintStyle = isDesktopLayout
@@ -810,6 +828,17 @@ export default function MissionReports() {
             contentInnerRef={item2ContentInnerRef}
             expandedHeight={expandedHeight}
             absolutePos={item2AbsolutePos}
+          />
+          <AccordionItem
+            data={caseStudies[2]}
+            isActive={activeIndex === 2}
+            onClick={() => handleClick(2)}
+            containerRef={item3ContainerRef}
+            headerRef={item3HeaderRef}
+            contentWrapRef={item3ContentWrapRef}
+            contentInnerRef={item3ContentInnerRef}
+            expandedHeight={expandedHeight}
+            absolutePos={item3AbsolutePos}
           />
 
           <div className="h-px bg-[#FF6F21]/70" style={bottomBorderStyle} />

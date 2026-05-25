@@ -128,8 +128,8 @@ const App = () => {
       <MissionReports />
       <RocketLaunchSection />
       <CreatorNetworkSection />
-      <SignalsSection />
-      <BridgeTestimonial />
+      {/* <SignalsSection />
+      <BridgeTestimonial /> */}
       <FooterSection />
     </main>
   );

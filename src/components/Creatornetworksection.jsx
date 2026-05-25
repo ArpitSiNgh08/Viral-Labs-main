@@ -32,9 +32,9 @@ const CN_FINAL_Y = -0.35;
 const CN_FINAL_X = 0;
 
 const CN_STATS = [
-  { value: "1BN+", label: "Views per month through our engagement network" },
-  { value: "8,000+", label: "Videos per month uploaded" },
-  { value: "300+", label: "Creators" },
+  { value: "300M+", label: "Monthly views" },
+  { value: "7,000+", label: "Videos shipped per month" },
+  { value: "500+", label: "Creators in network" },
 ];
 
 /* ══════════════════════════════════════════════════════
@@ -171,7 +171,7 @@ function DesktopLayout() {
               Creator Network
             </p>
             <h2 ref={cnHeadingRef} className="font-host font-medium text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-[2.8rem] 2xl:text-[3.375rem] 3xl:text-[4.2rem] 4xl:text-[5.625rem] 5xl:text-[8.5rem] tracking-tighter leading-none text-right">
-              Creator Operator<br />Network
+              Built to Operate at Scale<br />at Scale
             </h2>
           </div>
 
@@ -179,7 +179,7 @@ function DesktopLayout() {
             <GlowLine svgRef={cnGlowRef} className="mt-0 w-32 sm:w-40 md:w-48 lg:w-39 xl:w-48 2xl:w-60 3xl:w-72 4xl:w-96 5xl:w-[37rem] h-auto -mr-2" />
 
             <p ref={cnDesc1Ref} className="hidden lg:block font-host font-thin w-full text-sm sm:text-base md:text-lg lg:max-w-[20rem] lg:text-xs xl:max-w-[25rem] xl:text-sm 2xl:max-w-[30rem] 2xl:text-lg 2xl:mb-[2rem] 3xl:max-w-[37.5rem] 3xl:text-xl 4xl:max-w-[50rem] 4xl:text-3xl 5xl:max-w-[75rem] 5xl:text-[2.8rem] 5xl:mb-[3.5rem] text-right leading-tight 5xl:leading-snug -mt-1">
-              We manage 300+ creators producing 8,000+ monthly videos. Powered by proprietary amplification, our network delivers 1B+ monthly views and high-impact performance across all major platforms.
+              500+ creators in our network. 7,000+ videos shipped every month. 300M+ monthly views across the portfolio. We don't run a creator agency. We run an operating system for distribution.
             </p>
 
             <div ref={cnStatsRef} className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-3 md:gap-y-3 lg:gap-[1.5rem] 2xl:gap-[2rem] 3xl:gap-[2.5rem] 4xl:gap-[3rem] 5xl:gap-[4rem] w-full max-w-[180px] sm:max-w-[200px] md:max-w-[260px] lg:max-w-[10rem] xl:max-w-[12.5rem] 2xl:max-w-[15rem] 3xl:max-w-[19rem] 4xl:max-w-[25rem] 5xl:max-w-[37.5rem] mt-2 4xl:mt-4 5xl:mt-6 self-end">
@@ -259,7 +259,7 @@ function MobileLayout() {
             Creator Network
           </p>
           <h2 ref={cnHeadingRef} className="font-host font-medium text-3xl sm:text-4xl md:text-5xl tracking-tighter leading-none text-center">
-            Creator Operator<br />Network
+            Built to Operate <br />at Scale
           </h2>
         </div>
 
@@ -271,7 +271,7 @@ function MobileLayout() {
 
         {/* Description */}
         <p ref={cnDescRef} className="hidden lg:block font-host font-thin text-sm sm:text-base md:text-lg text-center leading-tight max-w-[520px]">
-          We manage 300+ creators producing 8,000+ monthly videos. Powered by proprietary amplification, our network delivers 1B+ monthly views and high-impact performance across all major platforms.
+          500+ creators in our network. 7,000+ videos shipped every month. 300M+ monthly views across the portfolio. We don't run a creator agency. We run an operating system for distribution.
         </p>
 
         {/* Stats */}

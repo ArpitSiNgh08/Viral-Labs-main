@@ -54,10 +54,10 @@ const BASE_IDLE_OPACITY = [0.5, 0.8];
 const rand = (min, max) => min + Math.random() * (max - min);
 
 const PIPELINE_STAGES = [
-  { title: "SIGNAL INPUT", description: "ICP analysis, category patterns, platform behaviour, content signals" },
-  { title: "PROCESSING LAYER", description: "Message development, content structuring, test design, iteration logic" },
-  { title: "Distribution Layer", description: "Multi-account UGC engines, publishing systems, launch execution, channel coordination" },
-  { title: "AMPLIFICATION LAYER", description: "Creator networks, engagement groups, reposting infrastructure, high-reach distribution nodes" },
+  { title: "RESEARCH", description: "We map your ICP, study your category, and reverse-engineer every viral video your competitors have shipped." },
+  { title: "PROCESSING LAYER", description: "We design the hooks, recruit the creators, and build hundreds of variations to test." },
+  { title: "DISTRIBUTION", description: "10-50 dedicated accounts per brand. TikTok, Instagram, YouTube. 300-3000 videos a month." },
+  { title: "AMPLIFICATION", description: "When a video breaks out, we run it as a paid ad. Your spend only goes behind creative that already worked." },
 ];
 
 /* ══════════════════════════════════════════════════════
@@ -110,13 +110,8 @@ export default function RocketLaunchSection() {
 
   const veSubtitleRef = useRef(null);
   const veHeadingRef = useRef(null);
-  const veGlowRef = useRef(null);
-  const veBody1Ref = useRef(null);
 
 
-  const mobileBodyRef = useRef(null);
-  const mobileBodyTextRef = useRef(null);
-  const mobileGlowRef = useRef(null);
 
   const label1Ref = useRef(null);
   const label2Ref = useRef(null);
@@ -139,11 +134,8 @@ export default function RocketLaunchSection() {
     const thrusterSvg = thrusterRef.current;
     const frames = [f2Ref.current, f3Ref.current, f4Ref.current, f5Ref.current, f6Ref.current, f7Ref.current, thrusterSvg];
     const labels = [label1Ref.current, label2Ref.current, label3Ref.current, label4Ref.current];
-    const veGlow = veGlowRef.current;
-
     const veSubtitleSplit = splitAndMask(veSubtitleRef.current, "lines");
     const veHeadingSplit = splitAndMask(veHeadingRef.current, "lines, chars");
-    const veBody1Split = splitAndMask(veBody1Ref.current, "lines");
 
 
     /* ── INITIAL STATES ── */
@@ -157,8 +149,7 @@ export default function RocketLaunchSection() {
     frames.forEach((frame) => gsap.set(frame, { y: 0 }));
     gsap.set(veSubtitleSplit.elements, { yPercent: 160, filter: "blur(6px)" });
     gsap.set(veHeadingSplit.split.chars, { yPercent: 160, opacity: 0, filter: "blur(6px)" });
-    gsap.set(veGlow, { scaleX: 0, transformOrigin: "left center", opacity: 0 });
-    gsap.set(veBody1Split.elements, { yPercent: 160, filter: "blur(5px)" });
+
 
     labels.forEach((label) => gsap.set(label, { opacity: 0, scale: 0.85, filter: "blur(6px)" }));
 
@@ -269,12 +260,6 @@ export default function RocketLaunchSection() {
     master.to(veHeadingSplit.split.chars, {
       yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1.5, stagger: 0.05, ease: "none",
     }, 4.3);
-    if (!isMobile) {
-      master.to(veGlow, { scaleX: 1, opacity: 1, duration: 1, ease: "none" }, 5.2);
-      master.to(veBody1Split.elements, {
-        yPercent: 0, filter: "blur(0px)", duration: 1, stagger: 0.2, ease: "none",
-      }, 5.5);
-    }
 
 
     /* ═══ PHASE 3 — LABELS + SEPARATION ═══ */
@@ -310,24 +295,7 @@ export default function RocketLaunchSection() {
     /* ═══ PHASE 4 — READING HOLD → PIN RELEASES ═══ */
     master.set({}, {}, 13);
 
-    /* ═══ MOBILE BODY TEXT — standalone ScrollTrigger ═══ */
-    if (isMobile) {
-      const mobileBody = mobileBodyRef.current;
-      const mobileText = mobileBodyTextRef.current;
-      const mobileGlow = mobileGlowRef.current;
-      if (mobileBody && mobileText && mobileGlow) {
-        gsap.set(mobileText, { yPercent: 40, opacity: 0, filter: "blur(5px)" });
-        gsap.set(mobileGlow, { scaleX: 0, transformOrigin: "left center", opacity: 0 });
-        gsap.to(mobileGlow, {
-          scaleX: 1, opacity: 1, duration: 0.8, ease: "none",
-          scrollTrigger: { trigger: mobileBody, start: "top 85%" },
-        });
-        gsap.to(mobileText, {
-          yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, ease: "none",
-          scrollTrigger: { trigger: mobileBody, start: "top 85%" },
-        });
-      }
-    }
+
 
     }); // fontReady.then
     return () => {
@@ -384,21 +352,14 @@ export default function RocketLaunchSection() {
           <div className="absolute z-40 pointer-events-none flex flex-col left-3 top-[2%] max-w-[50vw] max-mob:max-w-[45vw] sm:left-6 sm:max-w-56 md:max-w-64 lg:left-16 lg:max-w-72 xl:left-24 xl:max-w-80 2xl:left-32 2xl:max-w-[24rem] 3xl:left-40 3xl:max-w-[28.75rem] 4xl:left-48 4xl:max-w-[36rem] 5xl:left-56 5xl:max-w-[44rem]">
             <div className="flex flex-col gap-0">
               <p ref={veSubtitleRef} className="font-host text-[0.625rem] sm:text-xs lg:text-xs xl:text-sm 3xl:text-sm 4xl:text-base 5xl:text-3xl text-vl-orange uppercase tracking-wide">
-                STRUCTURED IN. VIRAL OUT.
+                
               </p>
               <h2 ref={veHeadingRef} className="font-host text-xl max-mob:text-lg sm:text-2xl lg:text-3xl xl:text-4xl 3xl:text-5xl 4xl:text-6xl 5xl:text-7xl tracking-tight leading-[1.06]">
-                Inside The<br />Viral Engine
+                Inside The<br /> Engine
               </h2>
             </div>
           </div>
 
-          {/* VE BODY — desktop only (inside pinned section) */}
-          <div className="absolute z-40 pointer-events-none hidden lg:flex flex-col gap-0 left-2 bottom-[6%] max-w-[65vw] max-mob:max-w-[58vw] sm:left-4 sm:bottom-[4%] sm:max-w-56 md:max-w-64 lg:left-auto lg:bottom-auto lg:right-[8%] lg:top-[72%] lg:max-w-72 xl:max-w-80 2xl:max-w-[22rem] 3xl:max-w-[26.25rem] 4xl:max-w-[32rem] 5xl:right-[0%] 5xl:max-w-[40rem]">
-            <GlowLineSvg ref={veGlowRef} className="w-20 sm:w-28 lg:w-36 xl:w-44 3xl:w-48 4xl:w-56 5xl:w-80 h-auto -ml-2.5 5xl:-ml-4.5" />
-            <p ref={veBody1Ref} className="font-host text-sm max-mob:text-xs sm:text-xs lg:text-xs xl:text-sm 3xl:text-sm 4xl:text-base 5xl:text-2xl font-thin text-white tracking-tighter leading-snug mt-0.5">
-              Behind every <span className="font-medium">Engagement</span> is a structured distribution system. It starts with <span className="font-medium">Audience</span> and <span className="font-medium">Market signals</span>, converts them into content and <span className="font-medium">Message systems</span>, and executes them through coordinated <span className="font-medium">Publishing</span> and <span className="font-medium">Amplification infrastructure</span>.
-            </p>
-          </div>
 
           {/* ── STAGE LABELS ── */}
 
@@ -451,13 +412,6 @@ export default function RocketLaunchSection() {
           </div>
 
         </div>
-      </div>
-      {/* VE BODY — mobile only (outside pinned section, normal flow) */}
-      <div ref={mobileBodyRef} className="relative lg:hidden mx-auto w-[calc(100%-clamp(2.5rem,10vw,13.125rem))] max-w-[106.875rem] py-12">
-        <GlowLineSvg ref={mobileGlowRef} className="w-20 sm:w-28 h-auto -ml-2.5 mob:max-sm:-ml-1.5" />
-        <p ref={mobileBodyTextRef} className="font-host text-sm max-mob:text-xs sm:text-xs font-thin text-white tracking-tighter leading-snug mt-0.5 max-w-[65vw] max-mob:max-w-[58vw] sm:max-w-56 md:max-w-64">
-          Behind every <span className="font-medium">Engagement</span> is a structured distribution system. It starts with <span className="font-medium">Audience</span> and <span className="font-medium">Market signals</span>, converts them into content and <span className="font-medium">Message systems</span>, and executes them through coordinated <span className="font-medium">Publishing</span> and <span className="font-medium">Amplification infrastructure</span>.
-        </p>
       </div>
     </section>
 

@@ -41,22 +41,16 @@ const GlowLine = ({ className = "" }) => (
 const cards = [
   {
     num: "01",
-    title: "UGC Engine",
-    desc: "Continuous content systems designed to generate, test, and scale high-performing user-generated content.",
+    title: "Organic Infrastructure",
+    desc: "We build and operate the always-on organic ads systems behind consumer apps. Multi-account, across TikTok, Instagram and YouTube, engineered to compound month over month.",
     img: "/images/image 489.png",
   },
   {
     num: "02",
-    title: "Product Launch Engine",
-    desc: "Structured launch execution that drives immediate traction through coordinated content and creator distribution.",
+    title: "Distribution Consulting",
+    desc: "We rebuild the strategy, systems, and execution standards that turn social into a growth function and raise your brand aura.",
     img: "/images/image 493.png",
-  },
-  {
-    num: "03",
-    title: "Social Media Transformation",
-    desc: "Turning social presence into a disciplined, performance-driven growth system.",
-    img: "/images/image 495.png",
-  },
+  }
 ];
 
 export default function CoreOperations() {
@@ -323,7 +317,7 @@ export default function CoreOperations() {
           aria-hidden="true"
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-[#383838]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 border-t border-[#383838]">
           {cards.map((card) => {
             return (
               <div

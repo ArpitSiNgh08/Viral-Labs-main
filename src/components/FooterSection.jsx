@@ -219,7 +219,7 @@ const FooterSection = () => {
             ref={headingRef}
             className="font-bricolage text-left md:text-center text-3xl max-mob:text-2xl max-mob:leading-[1.08] max-mob:max-w-44 max-mob:mb-2 mob:mb-2.5 sm:mb-3 font-normal leading-[1.05] tracking-tight text-white max-w-[14rem] sm:text-4xl sm:max-w-[18rem] md:max-w-none md:text-4xl md:mb-0 lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl 4xl:text-[9rem] 5xl:text-[13rem]"
           >
-            Engineering<br />predictable growth<br />starts here
+            Engineering <br />organic growth<br />starts here
           </h2>
 
           {/* Subtext */}
@@ -228,8 +228,8 @@ const FooterSection = () => {
             className="mt-2 max-w-[14rem] max-mob:text-xs max-mob:max-w-48 max-mob:mb-1.5 mob:mb-2 sm:mb-2.5 md:mb-0 sm:max-w-[18rem] md:max-w-[18rem] lg:max-w-[27rem] xl:max-w-[34rem] 2xl:max-w-[40rem] 3xl:max-w-[50rem] 4xl:max-w-[66rem] 5xl:max-w-[100rem] font-host text-sm font-thin leading-tight text-white/70 text-left md:text-center sm:text-base md:text-[0.57rem] lg:text-sm xl:text-base 2xl:text-lg 3xl:text-xl 4xl:text-3xl 5xl:text-4xl sm:mt-2 4xl:mt-4 5xl:mt-6"
             style={{ opacity: 0 }}
           >
-            If you're ready to move beyond guesswork and scale through structured
-            distribution systems, let's build your next growth engine.
+            If you're done with guesswork and ready to scale through 
+            structured distribution, let's build your engine.
           </p>
 
           {/* CTA Button — corner brackets + scramble, no bevel */}
@@ -238,6 +238,7 @@ const FooterSection = () => {
             className="relative mt-5 inline-block cursor-pointer md:mt-6 4xl:mt-10 5xl:mt-14"
             onMouseEnter={handleBtnEnter}
             onMouseLeave={handleBtnLeave}
+            onClick={() => { window.location.href = "mailto:eashan@aydus.co"; }}
             style={{ opacity: 0 }}
           >
             {/* Corner brackets — positioned via top/left/right/bottom, animated via transform only */}

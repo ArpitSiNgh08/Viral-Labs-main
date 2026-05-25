@@ -54,7 +54,6 @@ export default function ViralitySection({ globeContainerRef }) {
   const sectionRef = useRef();
   const headerRef = useRef();
   const glowRef = useRef();
-  const bottomTextRef = useRef();
   const mobileGlobeRef = useRef();
 
   useGSAP(
@@ -151,86 +150,10 @@ export default function ViralitySection({ globeContainerRef }) {
       gsap.set(".v-glow-h", { clipPath: "inset(0 100% 0 0)" });
       gsap.set(".v-cubes", { opacity: 0, scale: 0, transformOrigin: "center center" });
 
-      // Bottom text — hidden until pin releases
-      gsap.set(bottomTextRef.current, { opacity: 0 });
-
-      // ═══════════════════════════════════════
-      // SPLITTEXT — BOTTOM LEFT PARAGRAPH
-      // ═══════════════════════════════════════
-
-      const bottomLeftSplit = SplitText.create(".v-bottom-left-text", {
-        type: "lines", mask: "lines", linesClass: "v-bl-line",
-      });
-      bottomLeftSplit.lines.forEach((line) => {
-        if (line.parentElement) line.parentElement.style.paddingBottom = "0.05em";
-      });
-      gsap.set(bottomLeftSplit.lines, {
-        yPercent: 120, filter: "blur(4px)",
-      });
-
-      // ═══════════════════════════════════════
-      // SPLITTEXT — BOTTOM "MOST BRANDS" TEXT
-      // ═══════════════════════════════════════
-
-      const bottomMostSplit = SplitText.create(".v-bottom-most-text", {
-        type: "lines", mask: "lines", linesClass: "v-bm-line",
-      });
-      bottomMostSplit.lines.forEach((line) => {
-        if (line.parentElement) line.parentElement.style.paddingBottom = "0.05em";
-      });
-      gsap.set(bottomMostSplit.lines, {
-        yPercent: 120, filter: "blur(4px)",
-      });
-
-      // ═══════════════════════════════════════
-      // BOTTOM RIGHT TAGS — initial states
-      // ═══════════════════════════════════════
-
-      gsap.set(".v-bottom-tag", {
-        opacity: 0, y: 16, filter: "blur(4px)",
-      });
-
-      // ═══════════════════════════════════════
-      // BOTTOM TEXT TIMELINE (paused)
-      // Plays once when the pin releases.
-      // ═══════════════════════════════════════
-
-      const bottomTl = gsap.timeline({ paused: true });
-
-      bottomTl.to(bottomTextRef.current, {
-        opacity: 1, duration: 0.4, ease: "power2.out",
-      }, 0);
-
-      bottomTl.to(bottomLeftSplit.lines, {
-        yPercent: 0,
-        filter: "blur(0px)",
-        stagger: 0.08,
-        duration: 0.8,
-        ease: "power4.out",
-      }, 0);
-
-      bottomTl.to(".v-bottom-tag", {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        stagger: 0.12,
-        duration: 0.7,
-        ease: "power4.out",
-      }, 0.15);
-
-      bottomTl.to(bottomMostSplit.lines, {
-        yPercent: 0,
-        filter: "blur(0px)",
-        stagger: 0.08,
-        duration: 0.8,
-        ease: "power4.out",
-      }, 0.5);
 
       // ═══════════════════════════════════════
       // PINNED SCRUB TIMELINE
       // ═══════════════════════════════════════
-
-      let bottomPlayed = false;
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -240,17 +163,6 @@ export default function ViralitySection({ globeContainerRef }) {
           pin: true,
           scrub: 2,
           pinSpacing: true,
-          onLeave: () => {
-            if (!bottomPlayed) {
-              bottomPlayed = true;
-              ScrollTrigger.create({
-                trigger: bottomTextRef.current,
-                start: "top 80%",
-                once: true,
-                onEnter: () => bottomTl.play(),
-              });
-            }
-          },
         },
         defaults: { ease: "none" },
       });
@@ -398,14 +310,14 @@ export default function ViralitySection({ globeContainerRef }) {
             <div className="relative w-[85%] mr-auto md:w-48 lg:w-40 xl:w-48 2xl:w-48 3xl:w-52 4xl:w-60 5xl:w-96 flex flex-col overflow-visible">
               <div className="relative px-5 max-mob:px-3 lg:px-3 xl:px-5 5xl:px-8 py-2 max-mob:py-1.5 lg:py-1.5 xl:py-2 5xl:py-4 bg-[#1d1d1d]/90 md:bg-[#1d1d1d]/70">
                 <div className="font-bricolage text-xl max-mob:text-lg max-mob:leading-[1.15] lg:text-base xl:text-xl 4xl:text-2xl 5xl:text-4xl text-white tracking-tight leading-5 lg:leading-4 xl:leading-5 5xl:leading-8 text-left md:text-right">
-                  Distribution
+                  Organic
                   <br />
-                  Architecture
+                  Ads
                 </div>
               </div>
               <div className="relative px-5 max-mob:px-3 lg:px-3 xl:px-5 5xl:px-8 py-2 max-mob:py-1.5 lg:py-1.5 xl:py-2 5xl:py-4 bg-[#101010]/90 md:bg-[#101010]/60">
                 <p className="font-host text-xs lg:text-[10px] xl:text-xs 4xl:text-sm 5xl:text-lg font-thin text-white leading-4 lg:leading-3.5 xl:leading-4 5xl:leading-6 tracking-wide text-left md:text-right">
-                  Distribution systems amplify signal.
+                  Organic and paid are one funnel, not two. The algorithm picks your winners. Then we run them as paid.
                 </p>
               </div>
               <GlowH className="absolute -top-3 right-0 max-sm:right-0 w-20 h-6" />
@@ -419,14 +331,14 @@ export default function ViralitySection({ globeContainerRef }) {
             <div className="relative w-[85%] ml-auto md:w-48 lg:w-40 xl:w-48 2xl:w-48 3xl:w-52 4xl:w-60 5xl:w-96 flex flex-col overflow-visible">
               <div className="relative px-5 max-mob:px-3 lg:px-3 xl:px-5 5xl:px-8 py-2 max-mob:py-1.5 lg:py-1.5 xl:py-2 5xl:py-4 bg-[#1d1d1d]/90 md:bg-[#1d1d1d]/70">
                 <div className="font-bricolage text-xl max-mob:text-lg max-mob:leading-[1.15] lg:text-base xl:text-xl 4xl:text-2xl 5xl:text-4xl text-white tracking-tight leading-5 lg:leading-4 xl:leading-5 5xl:leading-8 text-left">
-                  Attention
+                  Multi-Account
                   <br />
-                  Dynamics
+                  Infrastructure
                 </div>
               </div>
               <div className="relative px-5 max-mob:px-3 lg:px-3 xl:px-5 5xl:px-8 py-2 max-mob:py-1.5 lg:py-1.5 xl:py-2 5xl:py-4 bg-[#101010]/90 md:bg-[#101010]/60">
                 <p className="font-host text-xs lg:text-[10px] xl:text-xs 4xl:text-sm 5xl:text-lg font-thin text-white leading-4 lg:leading-3.5 xl:leading-4 5xl:leading-6 tracking-wide text-left">
-                  Attention follows observable patterns.
+                  One viral post is a moment. A coordinated account engine is an asset.
                 </p>
               </div>
               <GlowH className="absolute -top-3 right-0 w-20 h-6" />
@@ -440,14 +352,14 @@ export default function ViralitySection({ globeContainerRef }) {
             <div className="relative w-[85%] mr-auto md:w-56 lg:w-44 xl:w-56 2xl:w-56 3xl:w-60 4xl:w-68 5xl:w-104 flex flex-col overflow-visible">
               <div className="relative px-5 max-mob:px-3 lg:px-3 xl:px-5 5xl:px-8 py-2 max-mob:py-1.5 lg:py-1.5 xl:py-2 5xl:py-4 bg-[#1d1d1d]/90 md:bg-[#1d1d1d]/70">
                 <div className="font-bricolage text-xl max-mob:text-lg max-mob:leading-[1.15] lg:text-base xl:text-xl 4xl:text-2xl 5xl:text-4xl text-white tracking-tight leading-5 lg:leading-4 xl:leading-5 5xl:leading-8 text-left md:text-right">
-                  Creative
+                  The Power 
                   <br />
-                  Methodology
+                  Law
                 </div>
               </div>
               <div className="relative px-5 max-mob:px-3 lg:px-3 xl:px-5 5xl:px-8 py-2 max-mob:py-1.5 lg:py-1.5 xl:py-2 5xl:py-4 bg-[#101010]/90 md:bg-[#101010]/60">
                 <p className="font-host text-xs lg:text-[10px] xl:text-xs 4xl:text-sm 5xl:text-lg font-thin text-white leading-4 lg:leading-3.5 xl:leading-4 5xl:leading-6 tracking-wide text-left md:text-right">
-                  Creative can be developed and tested systematically.
+                  Volume creates outliers. Outliers move the needle. Less than 1% of our videos drive over 80% of total views.
                 </p>
               </div>
               <GlowH className="absolute -top-3 left-28 max-sm:left-auto max-sm:right-0 sm:left-auto sm:right-0 md:left-auto md:right-0 w-20 h-6" />
@@ -461,14 +373,14 @@ export default function ViralitySection({ globeContainerRef }) {
             <div className="relative w-[85%] ml-auto md:w-69 lg:w-52 xl:w-69 2xl:w-69 3xl:w-72 4xl:w-84 5xl:w-120 flex flex-col overflow-visible">
               <div className="relative px-5 max-mob:px-3 lg:px-3 xl:px-5 5xl:px-8 py-2 max-mob:py-1.5 lg:py-1.5 xl:py-2 5xl:py-4 bg-[#1d1d1d]/90 md:bg-[#1d1d1d]/70">
                 <div className="font-bricolage text-xl max-mob:text-lg max-mob:leading-[1.15] lg:text-base xl:text-xl 4xl:text-2xl 5xl:text-4xl text-white tracking-tight leading-5 lg:leading-4 xl:leading-5 5xl:leading-8 text-left">
-                  Performance
+                 Content-Product 
                   <br />
-                  Outcomes
+                  Fit
                 </div>
               </div>
               <div className="relative px-5 max-mob:px-3 lg:px-3 xl:px-5 5xl:px-8 py-2 max-mob:py-1.5 lg:py-1.5 xl:py-2 5xl:py-4 bg-[#101010]/90 md:bg-[#101010]/60">
                 <p className="font-host text-xs lg:text-[10px] xl:text-xs 4xl:text-sm 5xl:text-lg font-thin text-white leading-4 lg:leading-3.5 xl:leading-4 5xl:leading-6 tracking-wide text-left">
-                  Growth becomes more predictable when distribution is managed as a system.
+                 Any video can earn views. Only the right format converts. Content-product fit is the discipline of engineering formats that scale and sell in the same video.
                 </p>
               </div>
               <GlowH className="absolute -top-3 left-28 max-sm:left-auto max-sm:right-0 sm:left-auto sm:right-0 md:left-auto md:right-0 w-20 h-6" />
@@ -485,55 +397,6 @@ export default function ViralitySection({ globeContainerRef }) {
       {/* ══ Mobile bottom spacer — replaces hidden bottom text ══ */}
       <div className="md:hidden h-16 sm:h-20" aria-hidden="true" />
 
-      {/* ══ BOTTOM TEXT — lives outside the h-screen block, scrolled to after pin ══ */}
-      <div ref={bottomTextRef} className="hidden md:block relative z-40 px-[clamp(0.75rem,3vw,3rem)] max-sm:px-2 max-mob:px-3 pb-[clamp(2.5rem,5vh,10rem)] pointer-events-none">
-        <div className="flex flex-col md:flex-row items-start md:justify-around max-w-6xl 5xl:max-w-none mx-auto gap-6 md:gap-[30%] lg:gap-16 pt-10 md:pt-24">
-
-          {/* Left column */}
-          <div className="md:max-w-[40%] lg:max-w-md 5xl:max-w-4xl">
-            <p className="v-bottom-left-text font-host font-thin text-sm md:text-xs lg:text-sm text-white leading-[1.2] tracking-tight 4xl:text-base 5xl:text-3xl">
-              <span className="font-semibold">Viral Labs</span>
-              {" "}studies how attention moves through markets, channels,
-              and audiences, then turns those patterns into structured distribution
-              systems. We do not rely on chance. We build repeatable conditions for
-              reach, influence, and commercial impact.
-            </p>
-          </div>
-
-          {/* Right column */}
-          <div className="flex flex-col gap-5">
-
-            <div className="flex flex-col gap-3">
-              <div className="v-bottom-tag flex items-center gap-3">
-                <div
-                  className="w-[10px] h-[10px] bg-[#FF6F21] shrink-0"
-                  style={{ boxShadow: "0 0 6px #FF6F21, 0 0 12px #FF6F21" }}
-                />
-                <span className="font-host font-thin text-sm md:text-xs lg:text-sm text-white tracking-tight 4xl:text-base 5xl:text-3xl">Signal Amplification</span>
-              </div>
-              <div className="v-bottom-tag flex items-center gap-3">
-                <div
-                  className="w-[10px] h-[10px] bg-[#FF6F21] shrink-0"
-                  style={{ boxShadow: "0 0 6px #FF6F21, 0 0 12px #FF6F21" }}
-                />
-                <span className="font-host font-thin text-sm md:text-xs lg:text-sm text-white tracking-tight 4xl:text-base 5xl:text-3xl">Behavioral Loops</span>
-              </div>
-              <div className="v-bottom-tag flex items-center gap-3">
-                <div
-                  className="w-[10px] h-[10px] bg-[#FF6F21] shrink-0"
-                  style={{ boxShadow: "0 0 6px #FF6F21, 0 0 12px #FF6F21" }}
-                />
-                <span className="font-host font-thin text-sm md:text-xs lg:text-sm text-white tracking-tight 4xl:text-base 5xl:text-3xl">Distribution Mechanics</span>
-              </div>
-            </div>
-
-            <p className="v-bottom-most-text font-host font-thin text-sm md:text-xs lg:text-sm max-mob:max-w-none text-white tracking-tight leading-[1.2] md:max-w-[12.50rem] lg:max-w-xs 4xl:max-w-sm 5xl:max-w-lg 4xl:text-base 5xl:text-3xl">
-              Most brands chase trends. We model attention. Virality follows patterns.
-            </p>
-          </div>
-
-        </div>
-      </div>
 
       </div>
     </section>
