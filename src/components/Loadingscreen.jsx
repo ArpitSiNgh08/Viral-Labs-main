@@ -456,30 +456,24 @@ export default function LoadingScreen({ videoSrc = "/videos/loader.webm" }) {
       {readyToEnter && (
         <div
           ref={enterBtnRef}
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center"
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center cursor-pointer"
           style={{ opacity: 0 }}
+          onClick={handleEnter}
         >
-          <button
-            onClick={handleEnter}
-            className="relative cursor-pointer"
-            style={{ background: "none", border: "none", padding: 0 }}
-          >
+          <div className="relative">
             <EnterCorners />
             <div
-              className="flex items-center gap-4 border border-white/30 hover:bg-white/5 transition-colors duration-300"
+              className="flex items-center justify-center border border-white/30 hover:bg-white/5 transition-colors duration-300"
               style={{ padding: "clamp(0.6rem,1.5vw,1.1rem) clamp(1.8rem,4vw,3rem)" }}
             >
               <span
-                className="font-host text-white tracking-[0.25em] uppercase"
+                className="font-host text-white tracking-[0.25em] uppercase text-center"
                 style={{ fontSize: "clamp(0.8rem,1.4vw,1.1rem)", fontWeight: 300 }}
               >
-                Enter
+                click anywhere to unveil
               </span>
-              <svg width="14" height="14" viewBox="0 0 10 10" fill="none">
-                <path d="M0.75 8.75L8.75 0.75M8.75 0.75H0.75M8.75 0.75V8.75" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
             </div>
-          </button>
+          </div>
         </div>
       )}
 
