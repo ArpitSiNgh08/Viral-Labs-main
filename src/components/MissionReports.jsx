@@ -397,28 +397,37 @@ function AccordionItem({
       <div ref={headerRef} className="relative z-10">
         <HeaderRowContent data={data} bgClass="border-t border-[#FF6F21]/70" textClass="text-white" isActive={isActive} />
 
-        {/* Cursor-follow "Click me" label — desktop only via JS gating */}
+        {/* Cursor-follow expand icon — desktop only via JS gating */}
         <div
           ref={cursorLabelRef}
           className="pointer-events-none absolute top-0 left-0 z-30 will-change-transform hidden lg:block"
           aria-hidden="true"
         >
-          <div ref={cursorCornersRef} className="relative px-7 py-4">
-            <svg className="absolute top-0 left-0 overflow-visible" width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <div ref={cursorCornersRef} className="relative px-5 py-5">
+            {/* Radial glow halo behind the icon */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: "radial-gradient(circle, rgba(255,111,33,0.18) 0%, transparent 72%)",
+                filter: "blur(6px)",
+              }}
+            />
+            <svg className="absolute top-0 left-0 overflow-visible" width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ filter: "drop-shadow(0 0 3px #FF6F21)" }}>
               <path d="M13 1 L1 1 L1 13" stroke="#FF6F21" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <svg className="absolute top-0 right-0 overflow-visible" width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <svg className="absolute top-0 right-0 overflow-visible" width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ filter: "drop-shadow(0 0 3px #FF6F21)" }}>
               <path d="M1 1 L13 1 L13 13" stroke="#FF6F21" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <svg className="absolute bottom-0 left-0 overflow-visible" width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <svg className="absolute bottom-0 left-0 overflow-visible" width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ filter: "drop-shadow(0 0 3px #FF6F21)" }}>
               <path d="M1 1 L1 13 L13 13" stroke="#FF6F21" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <svg className="absolute bottom-0 right-0 overflow-visible" width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <svg className="absolute bottom-0 right-0 overflow-visible" width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ filter: "drop-shadow(0 0 3px #FF6F21)" }}>
               <path d="M13 1 L13 13 L1 13" stroke="#FF6F21" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="block font-bricolage text-[#FF6F21] text-xl leading-none whitespace-nowrap tracking-tight">
-              Click me
-            </span>
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"
+              style={{ filter: "drop-shadow(0 0 4px #FF6F21) drop-shadow(0 0 10px rgba(255,111,33,0.6))" }}>
+              <path d="M11 2v18M2 11h18" stroke="#FF6F21" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
           </div>
         </div>
       </div>
