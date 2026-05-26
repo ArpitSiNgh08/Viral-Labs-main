@@ -18,9 +18,33 @@ const CLOCKS = [
 const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&";
 
 /* ─── Nav links ─── */
-const NAV_COL_1 = ["Home", "Service", "Viral Engine"];
-const NAV_COL_2 = ["Case Studies", "Contact"];
-const NAV_MOBILE = ["Home", "Services", "Viral Engine", "Case Studies", "Contact"];
+const NAV_COL_1 = [
+  { label: "Home", target: "#home" },
+  { label: "Services", target: "#services" },
+  { label: "Viral Engine", target: "#system" },
+];
+const NAV_COL_2 = [
+  { label: "Case Studies", target: "#reports" },
+  { label: "Contact", target: null },
+];
+const NAV_MOBILE = [
+  { label: "Home", target: "#home" },
+  { label: "Services", target: "#services" },
+  { label: "Viral Engine", target: "#system" },
+  { label: "Case Studies", target: "#reports" },
+  { label: "Contact", target: null },
+];
+
+const smoothScrollTo = (e, target) => {
+  e.preventDefault();
+  if (!target) return;
+  if (target === "#home") {
+    window.__lenis ? window.__lenis.scrollTo(0) : window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    const el = document.querySelector(target);
+    if (el) window.__lenis ? window.__lenis.scrollTo(el) : el.scrollIntoView({ behavior: "smooth" });
+  }
+};
 
 /* ─── Corner bracket default/hover offsets ─── */
 const CORNER_DEFAULT = -8;
@@ -281,13 +305,14 @@ const FooterSection = () => {
 
               {/* Nav links */}
               <nav className="flex flex-col gap-1.5 leading-tight mt-8">
-                {NAV_MOBILE.map((link) => (
+                {NAV_MOBILE.map(({ label, target }) => (
                   <a
-                    key={link}
-                    href="#"
-                    className={`font-host text-xl leading-[1.15] font-thin transition-colors duration-200 hover:text-[#FF6F21] ${link === "Home" ? "text-[#FF6F21]" : "text-white"}`}
+                    key={label}
+                    href={target || "#"}
+                    onClick={(e) => smoothScrollTo(e, target)}
+                    className={`font-host text-xl leading-[1.15] font-thin transition-colors duration-200 hover:text-[#FF6F21] ${label === "Home" ? "text-[#FF6F21]" : "text-white"}`}
                   >
-                    {link}
+                    {label}
                   </a>
                 ))}
               </nav>
@@ -374,24 +399,26 @@ const FooterSection = () => {
                 <div className="flex flex-col md:flex-row items-start gap-1 md:gap-6 lg:gap-8 xl:gap-12 2xl:gap-16 3xl:gap-20 4xl:gap-28 5xl:gap-36">
                   {/* Nav columns */}
                   <div ref={navCol1Ref} className="flex flex-col gap-1">
-                    {NAV_COL_1.map((link) => (
+                    {NAV_COL_1.map(({ label, target }) => (
                       <a
-                        key={link}
-                        href="#"
-                        className={`font-host text-xl max-mob:text-base md:text-xs xl:text-sm 2xl:text-base 3xl:text-base 4xl:text-xl 5xl:text-4xl font-thin transition-colors duration-200 hover:text-[#FF6F21] ${link === "Home" ? "text-[#FF6F21]" : "text-white"}`}
+                        key={label}
+                        href={target || "#"}
+                        onClick={(e) => smoothScrollTo(e, target)}
+                        className={`font-host text-xl max-mob:text-base md:text-xs xl:text-sm 2xl:text-base 3xl:text-base 4xl:text-xl 5xl:text-4xl font-thin transition-colors duration-200 hover:text-[#FF6F21] ${label === "Home" ? "text-[#FF6F21]" : "text-white"}`}
                       >
-                        {link}
+                        {label}
                       </a>
                     ))}
                   </div>
                   <div ref={navCol2Ref} className="flex flex-col gap-0.5">
-                    {NAV_COL_2.map((link) => (
+                    {NAV_COL_2.map(({ label, target }) => (
                       <a
-                        key={link}
-                        href="#"
+                        key={label}
+                        href={target || "#"}
+                        onClick={(e) => smoothScrollTo(e, target)}
                         className="font-host text-xl max-mob:text-base md:text-xs xl:text-sm 2xl:text-base 3xl:text-base 4xl:text-xl 5xl:text-4xl font-thin text-white transition-colors duration-200 hover:text-[#FF6F21]"
                       >
-                        {link}
+                        {label}
                       </a>
                     ))}
                   </div>

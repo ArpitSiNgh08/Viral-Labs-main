@@ -47,6 +47,7 @@ const App = () => {
       touchMultiplier: IS_MOBILE ? 1.4 : 1.8,
     });
     lenisRef.current = lenis;
+    window.__lenis = lenis;
 
     lenis.stop();
 
@@ -73,6 +74,7 @@ const App = () => {
       clearInterval(checkReady);
       gsap.ticker.remove(rafCallback);
       lenis.destroy();
+      delete window.__lenis;
     };
   }, []);
 
