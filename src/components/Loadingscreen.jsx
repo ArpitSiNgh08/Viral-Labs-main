@@ -427,6 +427,18 @@ export default function LoadingScreen({ videoSrc = "/videos/loader.webm" }) {
     return () => clearTimeout(maxWait);
   }, [runExitAnimation]);
 
+  // ── Scroll wheel unlock ──
+  useEffect(() => {
+    const handleWheel = (e) => {
+      if (readyToEnter && !hasExited.current) {
+        handleEnter();
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: true });
+    return () => window.removeEventListener("wheel", handleWheel);
+  }, [readyToEnter, handleEnter]);
+
   if (removed) return null;
 
   return (
