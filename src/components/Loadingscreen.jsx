@@ -456,14 +456,14 @@ export default function LoadingScreen({ videoSrc = "/videos/loader.webm" }) {
       {readyToEnter && (
         <div
           ref={enterBtnRef}
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center cursor-pointer"
+          className="absolute inset-0 z-20 flex flex-col items-center justify-end cursor-pointer pb-20"
           style={{ opacity: 0 }}
           onClick={handleEnter}
         >
           <div className="relative">
-            <EnterCorners />
+            {/* <EnterCorners /> */}
             <div
-              className="flex items-center justify-center border border-white/30 hover:bg-white/5 transition-colors duration-300"
+              className="flex items-center justify-center"
               style={{ padding: "clamp(0.6rem,1.5vw,1.1rem) clamp(1.8rem,4vw,3rem)" }}
             >
               <span

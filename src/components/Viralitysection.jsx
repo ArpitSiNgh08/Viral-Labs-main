@@ -257,8 +257,8 @@ export default function ViralitySection({ globeContainerRef }) {
       />
 
       {/* Clip wrapper — clips globe at section bounds, prevents bleed into section above */}
-      <div className="absolute inset-0 overflow-hidden z-10">
-        {isDesktop && <div ref={globeContainerRef} className="absolute -top-40 bottom-0 w-full -translate-y-12" />}
+      <div className="absolute  inset-0 overflow-hidden z-10">
+        {isDesktop && <div ref={globeContainerRef} className="absolute h-full bottom-0 w-full " />}
       </div>
 
       {/* Globe video for small screens — only rendered on mobile, deferred load */}

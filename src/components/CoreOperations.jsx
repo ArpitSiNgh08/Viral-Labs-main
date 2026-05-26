@@ -252,6 +252,7 @@ export default function CoreOperations() {
 
   return (
     <section
+      id="services"
       ref={sectionRef}
       className="relative z-25 w-full overflow-x-clip pb-0"
     >
@@ -273,7 +274,7 @@ export default function CoreOperations() {
 
       {/* ── Header ── */}
       <div
-        className="relative z-40 flex flex-col gap-4 sm:flex-row max-sm:justify-center sm:justify-between px-[clamp(0.75rem,3vw,4.5rem)]"
+        className="relative z-40 py-20 flex flex-col gap-4 sm:flex-row max-sm:justify-center sm:justify-between px-[clamp(0.75rem,3vw,4.5rem)]"
         style={{ minHeight: "clamp(6.5rem, 15vh, 12rem)" }}
       >
           <div className="flex flex-col sm:self-center">
@@ -324,7 +325,7 @@ export default function CoreOperations() {
                 key={card.num}
                 className="co-card relative flex flex-col border-[#383838] border-b last:border-b-0 sm:border-r sm:[&:nth-child(2n)]:border-r-transparent sm:[&:nth-last-child(-n+2)]:border-b-0 lg:[&:nth-child(2n)]:border-r-[#383838] lg:border-b-0 lg:last:border-r-transparent"
               >
-                <div className="relative aspect-3/2 sm:aspect-square lg:aspect-[4/3] bg-transparent overflow-hidden">
+                <div className="relative aspect-3/2 sm:aspect-square lg:aspect-[6/3] bg-transparent overflow-hidden">
                   <img
                     src={card.img}
                     alt={card.title}

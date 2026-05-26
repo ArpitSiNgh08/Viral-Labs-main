@@ -311,7 +311,7 @@ export default function RocketLaunchSection() {
      ══════════════════════════════════════════════ */
   return (
     <>
-    <section ref={sectionRef} className="rocket-launch-section relative z-25 w-full h-screen">
+    <section ref={sectionRef} id="system" className="rocket-launch-section relative z-25 w-full h-screen">
       {/* <GlobalGrid /> */}
 
       <div ref={rocketTextureRef} className="opacity-0">
