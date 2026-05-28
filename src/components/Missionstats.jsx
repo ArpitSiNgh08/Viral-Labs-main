@@ -352,7 +352,7 @@ export default forwardRef(function MissionStats(props, ref) {
               Impact Stats
             </p>
             <h2 className="impact-heading font-host font-medium text-[clamp(2rem,4.5vw,3.375rem)] max-sm:text-4xl max-mob:text-[1.875rem] max-mob:leading-[1.05] max-mob:tracking-[-1.5px] 4xl:text-[4rem] 5xl:text-[5rem] text-[#f1f1f1] tracking-[-2.16px] leading-[1.2] w-full">
-              Performance Deployed At Scale
+              Performance Deployed At <span className="text-[#ff6f21]">Scale</span>
             </h2>
           </div>
           {/* <p className="impact-desc font-host font-light text-base max-mob:text-sm max-mob:leading-[1.35] 4xl:text-lg 5xl:text-xl text-white tracking-tight leading-[1.0] w-full lg:max-w-[18.25rem] 4xl:max-w-[24rem] 5xl:max-w-[28rem] lg:mt-12 lg:-translate-y-6 max-sm:w-full max-sm:mt-0">

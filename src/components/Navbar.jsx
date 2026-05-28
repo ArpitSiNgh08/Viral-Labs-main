@@ -140,7 +140,7 @@ export default function Navbar({ entranceDelay = 0.3 }) {
   const wavePathRef = useRef();
   const waveStateRef = useRef({
     phase: 0,
-    currentAmplitude: WAVE_MUTED_AMPLITUDE,
+    currentAmplitude: WAVE_UNMUTED_AMPLITUDE,
   });
 
   /* Sync button state with bgAudio play/pause events */
