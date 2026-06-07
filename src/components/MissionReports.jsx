@@ -88,6 +88,7 @@ function CornerRight({ className = "" }) {
   );
 }
 
+
 const HOVER_BG = "#1a1a1a";
 const BG_WIPE_COLORS = ["#3a3a3a", "#252525", "#171717", HOVER_BG];
 
