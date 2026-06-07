@@ -75,11 +75,21 @@ const DashedArc = forwardRef(({ className = "" }, ref) => (
 ));
 
 const LOGOS = [
-  { src: "/images/Logo 1.png", alt: "Logo", width: 168, height: 58 },
-  { src: "/images/idag8zcHyV_1773986487960 1.png", alt: "Deel", width: 156, height: 73 },
-  { src: "/images/Dr._Martens_Logo 1.png", alt: "Dr. Martens", width: 162, height: 92 },
-  { src: "/images/flo-svg 1.png", alt: "Flo", width: 163, height: 75 },
-  { src: "/images/Vector.png", alt: "The North Face", width: 60, height: 73 },
+  // { src: "/images/Logo 1.png", alt: "Logo", width: 168, height: 58 },
+  // { src: "/images/idag8zcHyV_1773986487960 1.png", alt: "Deel", width: 156, height: 73 },
+  // { src: "/images/Dr._Martens_Logo 1.png", alt: "Dr. Martens", width: 162, height: 92 },
+  // { src: "/images/flo-svg 1.png", alt: "Flo", width: 163, height: 75 },
+  // { src: "/images/Vector.png", alt: "The North Face", width: 60, height: 73 },
+  { src: "/images/airtable.png", alt: "Airtable", width: 500, height: 122 },
+  { src: "/images/depop.png", alt: "DePop", width: 444, height: 110 },
+  { src: "/images/doordash.png", alt: "DoorDash", width: 500, height: 221 },
+  { src: "/images/instacart.png", alt: "Instacart", width: 500, height: 74 },
+  { src: "/images/lyft.webp", alt: "Lyft", width: 500, height: 344 },
+  { src: "/images/patreon.png", alt: "Patreon", width: 399, height: 133 },
+  { src: "/images/shopify.png", alt: "Shopify", width: 500, height: 131 },
+  { src: "/images/stripe.webp", alt: "Stripe", width: 500, height: 210 },
+  { src: "/images/t.png", alt: "T", width: 500, height: 498 },
+  { src: "/images/twitch.png", alt: "Twitch", width: 500, height: 143 },
 ];
 
 // ════════════════════════════════════════════════
@@ -383,7 +393,7 @@ export default forwardRef(function MissionStats(props, ref) {
 
           <div ref={trackRef} className="flex w-max items-center max-sm:cursor-grab max-sm:active:cursor-grabbing">
             {["a", "b", "c", "d"].map((setKey) => (
-              <div key={setKey} className="marquee-set flex shrink-0 items-center justify-evenly gap-14 max-sm:gap-12 max-mob:gap-8" style={{ width: "max(calc(100vw - 13.125rem), 56.25rem)" }}>
+              <div key={setKey} className="marquee-set flex shrink-0 pr-16 items-center justify-evenly gap-14 max-sm:gap-12 max-mob:gap-8" style={{  }}>
                 {LOGOS.map((logo, i) => (
                   <img
                     key={`${setKey}-${i}`}

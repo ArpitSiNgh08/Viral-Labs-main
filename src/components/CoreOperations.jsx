@@ -41,14 +41,14 @@ const GlowLine = ({ className = "" }) => (
 const cards = [
   {
     num: "01",
-    title: "Organic Infrastructure",
-    desc: "We build and operate the always-on organic ads systems behind consumer apps. Multi-account, across TikTok, Instagram and YouTube, engineered to compound month over month.",
+    title: "Growth Marketing",
+    desc: "We build content engines that turn attention into growth. From short-form video production to platform-native distribution across Instagram, TikTok, YouTube, and LinkedIn, we create systems designed to compound reach, engagement, and brand demand month over month.",
     img: "/images/image 489.png",
   },
   {
     num: "02",
-    title: "Distribution Consulting",
-    desc: "We rebuild the strategy, systems, and execution standards that turn social into a growth function and raise your brand aura.",
+    title: "Brand Presence",
+    desc: "We create the identity, website, and digital experience behind modern brands.Built to attract attention, establish credibility, and convert visitors into customers.",
     img: "/images/image 493.png",
   }
 ];
