@@ -262,7 +262,7 @@ const FooterSection = () => {
             className="relative mt-5 inline-block cursor-pointer md:mt-6 4xl:mt-10 5xl:mt-14"
             onMouseEnter={handleBtnEnter}
             onMouseLeave={handleBtnLeave}
-            onClick={() => { window.location.href = "mailto:eashan@aydus.co"; }}
+            onClick={() => { window.location.href = "https://calendly.com/ashutoshsadana10/30min"; }}
             style={{ opacity: 0 }}
           >
             {/* Corner brackets — positioned via top/left/right/bottom, animated via transform only */}

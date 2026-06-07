@@ -527,7 +527,7 @@ export default function HeroSection() {
                   ref={subheadingRef}
                   className="hero-subheading font-host text-base max-mob:mb-[2rem] mob:mb-[2rem] md:mb-[1.2rem] md:text-xs lg:text-base 4xl:text-2xl 5xl:text-4xl text-[#a1a1aa] text-left md:text-center tracking-[-0.32px] leading-[1.15] max-w-[60%] max-mob:max-w-[60%] sm:max-w-[45%] md:max-w-[540px] 4xl:max-w-[700px] 5xl:max-w-[1000px] mb-5 2xl:mb-[2rem] 4xl:mb-[2.5rem] 5xl:mb-[3rem]"
                 >
-                  Short-form content systems for consumer companies. Built for Polymarket, Deel, Flo Health, The North Face, and Veed.
+                  Short-form content systems for consumer companies. Built for Shopify, Twitch, DoorDash, Stripe, Lyft.
                 </p>
               </div>
             </div>
