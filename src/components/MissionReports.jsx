@@ -94,7 +94,7 @@ const BG_WIPE_COLORS = ["#3a3a3a", "#252525", "#171717", HOVER_BG];
 const caseStudies = [
   {
     id: "01", brand: "DoorDash", logo: "tnf",
-    link: "https://giant-rubidium-888.notion.site/How-We-Drove-Sales-for-The-North-Face-Through-Organic-Content-3177dca4ef9f803f8357c8d54d4a2226?source=copy_link",
+    link: "https://app.notion.com/p/How-Beyond-Viral-Drove-610K-in-Revenue-for-DoorDash-Through-Organic-Content-3762f6cae24b81f5ac37fd9ac9cb797b",
     tagline: "Engineering Discovery \nfor a Hidden Platform",
     objective: "Increase cultural relevance among Gen Z consumers through localized creator campaigns and fast-moving social content.",
     execution: "Built trend-native campaigns, food-focused creator collaborations, and short-form lifestyle content engineered for platform reach.",
@@ -102,7 +102,7 @@ const caseStudies = [
   },
   {
     id: "02", brand: "Patreon", logo: "flo",
-    link: "https://giant-rubidium-888.notion.site/How-Viral-Labs-Engineered-Flo-s-Organic-Comeback-30b7dca4ef9f801aa0e8f90b6ef91284?source=copy_link",
+    link: "https://app.notion.com/p/How-Beyond-Viral-Made-Patreon-the-Default-Home-for-Creator-Monetization-3762f6cae24b81b7afa9fca40323d15f",
     tagline: "Engineering an Organic\nComeback.",
     objective: "Increase creator adoption by positioning Patreon as the default monetization platform for independent digital creators.",
     execution: "Produced educational creator content, monetization-focused storytelling, and platform-native short-form campaigns designed for conversion.",
